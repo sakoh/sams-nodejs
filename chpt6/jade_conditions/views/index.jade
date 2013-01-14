@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  - raining = false
+  - if (raining)
+    p It is raining. Take an umbrella!
+  - else
+    p No rain. Take the bike!
