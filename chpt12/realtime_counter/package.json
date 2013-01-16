@@ -1,0 +1,8 @@
+{
+  "name": "realtime_counter_example",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "socket.io": "~0.9.13"
+  }
+}
