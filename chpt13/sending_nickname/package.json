@@ -1,0 +1,10 @@
+{
+  "name": "sending-nickname-example",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "~3.0.6",
+    "socket.io": "~0.9.13",
+    "jade": "~0.28.1"
+  }
+}

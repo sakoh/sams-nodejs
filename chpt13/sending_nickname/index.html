@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Sending Nickname Example</title>
+</head>
+<body>
+  <h1>Sending Nickname Example</h1>
+  <form id="set-nickname">
+    <label for="nickname">Nickname:</label>
+    <input type="text" id="nickname" />
+    <input type="submit" />
+  </form>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io.connect();
+    jQuery(function($) {
+      var nickname = $('#nickname');
+      var setNicknameForm = $('#set-nickname');
+      setNicknameForm.submit(function(event) {
+        event.preventDefault();
+        socket.emit('nickname', nickname.val());
+      });
+    });
+  </script>
+</body>
+</html>
