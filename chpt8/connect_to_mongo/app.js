@@ -59,7 +59,7 @@ app.get('/tasks', function(req, res) {
 });
 
 app.get('/tasks/new', function(req, res) {
-  res.render('tasks/new.jade', {
+  res.render('tasks/new', {
     title: 'New Task'
   });
 });
