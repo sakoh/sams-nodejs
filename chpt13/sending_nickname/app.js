@@ -1,35 +1,17 @@
-var express = require('express'),
-    http = require('http'),
-    path = require('path');
+var express = require('express')
+  , app = express()
+  , http = require('http')
+  , server = http.createServer(app)
+  , io = require('socket.io').listen(server);
 
-var app = express();
+server.listen(3000);
 
-app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.favicon());
-  app.use(express.logger('dev'));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', function (req, res) {
+  res.sendfile(__dirname + '/index.html');
 });
 
-app.get('/', function(req, res) {
-    res.sendfile(__dirname + '/index.html');
+io.sockets.on('connection', function (socket) {
+  socket.on('nickname', function (data) {
+    console.log('The server received the following nickname: ' + data);
+  });
 });
-
-var server = http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
-});
-
-var io = require('socket.io').listen(server);
-
-
-io.sockets.on('connection', function(socket) {
-    socket.on('nickname', function(data) {
-      console.log('The server received the following nickname: ' + data);
-    });
-});
-
